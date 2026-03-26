@@ -4,9 +4,7 @@ let endereco = document.getElementById("endereco").value;
 let tipo = document.getElementById("tipo").value;
 let arquivoFoto = document.getElementById("foto").files[0];
 
-// buscar coordenadas do endereço
-
-let url = "https://nominatim.openstreetmap.org/search?format=json&q=" 
+let url = "https://nominatim.openstreetmap.org/search?format=json&q="
 + encodeURIComponent(endereco);
 
 let resposta = await fetch(url);
@@ -20,18 +18,14 @@ return;
 let lat = parseFloat(dados[0].lat);
 let lng = parseFloat(dados[0].lon);
 
-
-// converter imagem para base64
-
+// converter imagem
 let leitor = new FileReader();
 
 leitor.onload = async function(){
 
 let fotoBase64 = leitor.result;
 
-try{
-
-await fetch("https://SEU-SERVICO.onrender.com/ocorrencias",{
+await fetch("https://api-olho-urbano.onrender.com/ocorrencias",{
 
 method:"POST",
 
@@ -41,38 +35,26 @@ headers:{
 
 body: JSON.stringify({
 
-lat: lat,
-lng: lng,
 tipo: tipo,
 endereco: endereco,
+lat: lat,
+lng: lng,
 foto: fotoBase64
 
 })
 
 });
 
-alert("Ocorrência registrada com sucesso!");
+alert("Ocorrência registrada!");
 
 window.location.href="index.html";
-
-}catch(erro){
-
-console.log(erro);
-
-alert("Erro ao enviar ocorrência");
-
-}
 
 };
 
 if(arquivoFoto){
-
 leitor.readAsDataURL(arquivoFoto);
-
 }else{
-
 alert("Selecione uma foto");
-
 }
 
 }

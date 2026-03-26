@@ -1,69 +1,30 @@
-var map = L.map('map').setView([0.0349,-51.0694],13);
+// carregar ocorrencias da API
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-attribution:'OpenStreetMap'
-}).addTo(map);
+fetch("https://api-olho-urbano.onrender.com/ocorrencias")
 
+.then(res => res.json())
 
-// icones
+.then(dados => {
 
-var iconeBuraco = L.icon({
-iconUrl: 'icons/buraco.png',
-iconSize: [42,42]
-});
+dados.forEach(o=>{
 
-var iconePoste = L.icon({
-iconUrl: 'icons/poste.png',
-iconSize: [42,42]
-});
+let icone;
 
-var iconeLixo = L.icon({
-iconUrl: 'icons/lixo.png',
-iconSize: [42,42]
-});
-
-var iconeAlagamento = L.icon({
-iconUrl: 'icons/alagamento.png',
-iconSize: [42,42]
-});
-
-
-// função para escolher icone
-
-function escolherIcone(tipo){
-
-if(tipo === "Buraco na rua"){
-return iconeBuraco;
+if(o.tipo === "Buraco na rua"){
+icone = iconeBuraco;
 }
 
-if(tipo === "Poste sem iluminação"){
-return iconePoste;
+else if(o.tipo === "Poste sem iluminação"){
+icone = iconePoste;
 }
 
-if(tipo === "Lixo acumulado"){
-return iconeLixo;
+else if(o.tipo === "Lixo acumulado"){
+icone = iconeLixo;
 }
 
-if(tipo === "Alagamento"){
-return iconeAlagamento;
+else if(o.tipo === "Alagamento"){
+icone = iconeAlagamento;
 }
-
-}
-
-
-// carregar ocorrências da API
-
-async function carregarOcorrencias(){
-
-try{
-
-let resposta = await fetch("https://SEU-SERVICO.onrender.com/ocorrencias");
-
-let ocorrencias = await resposta.json();
-
-ocorrencias.forEach(o=>{
-
-let icone = escolherIcone(o.tipo);
 
 let popup = `
 <b>${o.tipo}</b><br>
@@ -71,21 +32,10 @@ ${o.endereco}<br>
 <img src="${o.foto}" width="200">
 `;
 
-L.marker([o.lat,o.lng], {icon: icone})
+L.marker([o.latitude,o.longitude], {icon: icone})
 .addTo(map)
 .bindPopup(popup);
 
 });
 
-}catch(erro){
-
-console.log("Erro ao carregar ocorrências", erro);
-
-}
-
-}
-
-
-// executar
-
-carregarOcorrencias();
+});
