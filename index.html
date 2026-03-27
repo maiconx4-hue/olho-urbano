@@ -1,34 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Olho Urbano</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+}
+
+header{
+background:#1f4e79;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.menu a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+
+text-align:center;
+padding:80px 20px;
+
+background:#f2f2f2;
+
+}
+
+.botao{
+
+display:inline-block;
+margin:20px;
+padding:15px 25px;
+background:#1f4e79;
+color:white;
+text-decoration:none;
+border-radius:8px;
+
+}
+
+.botao:hover{
+background:#163a59;
+}
+
+.info{
+
+padding:50px;
+text-align:center;
+
+}
+
+.cards{
+
+display:flex;
+justify-content:center;
+gap:30px;
+
+}
+
+.card{
+
+background:#f5f5f5;
+padding:20px;
+border-radius:10px;
+width:200px;
+
+}
+
+footer{
+
+text-align:center;
+padding:20px;
+background:#1f4e79;
+color:white;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h2>Olho Urbano</h2>
+<header>
 
-<p>Ocorrências registradas</p>
+<h1>Olho Urbano</h1>
+
+<nav class="menu">
+<a href="index.html">Início</a>
+<a href="login.html">Login</a>
+<a href="cadastro.html">Cadastro</a>
+</nav>
+
+</header>
 
 
-<div id="map"></div>
+<section class="hero">
 
-<button onclick="window.location.href='reportar.html'">
-Reportar Problema
-</button>
+<h2>Ajude a melhorar a cidade</h2>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<p>
+Registre problemas urbanos como buracos, lixo acumulado ou falta de iluminação.
+</p>
 
-<script src="mapa.js"></script>
+<a class="botao" href="mapa.html">
+Ver Ocorrências
+</a>
+
+<a class="botao" href="reportar.html">
+Registrar Problema
+</a>
+
+</section>
+
+
+<section class="info">
+
+<h2>Como funciona</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>1</h3>
+<p>Você registra um problema</p>
+</div>
+
+<div class="card">
+<h3>2</h3>
+<p>Outros cidadãos visualizam</p>
+</div>
+
+<div class="card">
+<h3>3</h3>
+<p>A prefeitura pode agir</p>
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>Olho Urbano</p>
+
+</footer>
 
 </body>
 
-</html> 
+</html>
