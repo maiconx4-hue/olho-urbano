@@ -5,7 +5,7 @@ attribution:'OpenStreetMap'
 }).addTo(map);
 
 
-// ICONES
+// icones
 
 var iconeBuraco = L.icon({
 iconUrl: 'icons/buraco.png',
@@ -28,7 +28,7 @@ iconSize: [42,42]
 });
 
 
-// ESCOLHER ICONE
+// função para escolher icone
 
 function escolherIcone(tipo){
 
@@ -48,12 +48,10 @@ if(tipo === "Alagamento"){
 return iconeAlagamento;
 }
 
-return iconeBuraco;
-
 }
 
 
-// CARREGAR OCORRENCIAS DA API
+// carregar ocorrências da API
 
 async function carregarOcorrencias(){
 
@@ -62,8 +60,6 @@ try{
 let resposta = await fetch("https://api-olho-urbano.onrender.com/ocorrencias");
 
 let ocorrencias = await resposta.json();
-
-console.log("Dados recebidos da API:", ocorrencias);
 
 ocorrencias.forEach(o=>{
 
